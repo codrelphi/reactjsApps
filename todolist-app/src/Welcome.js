@@ -8,6 +8,7 @@ class Welcome extends Component {
       count: 0
     };
     this.removeOne = this.removeOne.bind(this);
+    this.remiseZero = this.remiseZero.bind(this);
   }
 
   addOne() {
@@ -22,6 +23,12 @@ class Welcome extends Component {
     });
   }
 
+  remiseZero() {
+    this.setState({
+      count: 0
+    });
+  }
+
   render() {
     return (
       <div>
@@ -29,6 +36,7 @@ class Welcome extends Component {
         <p>Mon compteur: {this.state.count}</p>
         <button onClick={() => this.addOne()}>Ajouter 1</button>
         <button onClick={this.removeOne}>Enlever 1</button>
+        <button onClick={this.remiseZero}>Remise à 0</button>
       </div>
     );
   }
