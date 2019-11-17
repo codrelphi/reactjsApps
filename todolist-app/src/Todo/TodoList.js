@@ -11,6 +11,10 @@ class TodoList extends Component {
     }
   }
 
+  capitalize(sentence) {
+    return sentence.charAt(0).toUpperCase() + sentence.slice(1);
+  }
+
   onChange(event) {
     this.setState({
       userInput: event.target.value,
@@ -23,7 +27,7 @@ class TodoList extends Component {
     if (inputUser !== '') {
       this.setState({
         userInput: '',
-        items: [...this.state.items, inputUser]
+        items: [...this.state.items, this.capitalize(inputUser)]
       });
     }
   }
