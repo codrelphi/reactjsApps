@@ -11,7 +11,11 @@ class TodoList extends Component {
     }
   }
 
+<<<<<<< HEAD
   static capitalize(sentence) {
+=======
+  capitalize(sentence) {
+>>>>>>> 6a6d17207509b7f56ac84e9addcdebdabdfa9f24
     return sentence.charAt(0).toUpperCase() + sentence.slice(1);
   }
 
