@@ -19,10 +19,13 @@ class TodoList extends Component {
 
   addTodo(event) {
     event.preventDefault();
-    this.setState({
-      userInput: '',
-      items: [...this.state.items, this.state.userInput]
-    });
+    const inputUser = this.state.userInput;
+    if (inputUser !== '') {
+      this.setState({
+        userInput: '',
+        items: [...this.state.items, inputUser]
+      });
+    }
   }
 
   deleteTodo(event) {
@@ -36,26 +39,46 @@ class TodoList extends Component {
 
   renderTodos() {
     return this.state.items.map((item) => {
-        return (<div key={item}>
-                  {item} | <button onClick={this.deleteTodo.bind(this)}>X</button>
+        return (<div key={item} className="list-group-item">
+                  <div className="row">
+                    <div className="col-sm-10">{item}</div>
+                    <div className="col-sm-2"><button onClick={this.deleteTodo.bind(this)} className="btn btn-outline-danger">X</button></div>
+                  </div>
                 </div>);
       });
   }
 
   render() {
     return (
-      <div>
-        <h1>Ma Todo list</h1>
-        <form>
-          <input
-            type="text"
-            placeholder="Renseigner un item"
-            value={this.state.userInput}
-            onChange={this.onChange.bind(this)}
-            />
-          <button onClick={this.addTodo.bind(this)}>Ajouter</button>
-        </form>
-        <div>{this.renderTodos()}</div>
+      <div className="container">
+        <div className="row">
+          <div className="col"></div>
+          <div className="col-6">
+            <h1 align="center">Ma Todo list</h1>
+            <form>
+              <div className="form-group">
+                <input
+                  type="text"
+                  placeholder="Renseigner un item"
+                  value={this.state.userInput}
+                  onChange={this.onChange.bind(this)}
+                  className="form-control"
+                  />
+              </div>
+              <div className="form-group">
+                <button
+                  onClick={this.addTodo.bind(this)}
+                  type="button"
+                  className="btn btn-primary btn-lg"
+                >
+                  Ajouter
+                </button>
+              </div>
+            </form>
+            <div className="list-group">{this.renderTodos()}</div>
+          </div>
+          <div className="col"></div>
+        </div>
       </div>
     );
   }
