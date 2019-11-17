@@ -14,11 +14,12 @@ class App extends React.Component {
     return (<div className="container">
               <div className="row">
                 <div className="col"></div>
-                <div className="col">
+                <div className="col-6">
                   <h2>Hello World, <span className="text-primary font-italic">{this.state.name}</span>.</h2>
                   <input
                     type="text"
                     placeholder="Enter a name..."
+                    maxlength="20"
                     className="form-control"
                     onChange={e => this.handleName(e)}>
                   </input>
