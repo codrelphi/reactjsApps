@@ -18,4 +18,4 @@ The author used the function **componentWillMount()** to generate the first quot
 5. The result will be at *127.0.0.1:3000*
 
 ## License
-[MIT License](https://github.com/codrelphi/reactjsApps/blob/master/LICENSE) - Chancerel Codjovi (aka codrelphi)
+[MIT License](https://github.com/codrelphi/reactjsApps/blob/master/LICENSE) © 2019 -  Chancerel Codjovi (aka codrelphi)
