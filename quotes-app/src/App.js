@@ -7,14 +7,21 @@ class App extends Component {
 
   state = {}
 
-  genererCitation(event) {
+  componentWillMount() {
+    this.genererCitation();
+  }
 
+  genererCitation(event) {
     //transforme les citations en Array
     const keyArray = Object.keys(citations);
+    // choisi aléatoirement un key dans le Array
     const randomKey = keyArray[Math.floor(Math.floor(Math.random() * keyArray.length))];
-    console.log(randomKey);
+    // vérifie que deux citations ne sont pas identiques
+    if (this.state.citation === citations[randomKey].citation) {
+      this.genererCitation();
+      return;
+    }
     this.setState(citations[randomKey]);
-
   }
 
   render() {
