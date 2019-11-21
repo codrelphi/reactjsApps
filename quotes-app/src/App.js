@@ -7,7 +7,8 @@ class App extends Component {
 
   state = {}
 
-  componentWillMount() {
+  // componentWillMount est déprécié et non sécurisé
+  componentDidMount() {
     this.genererCitation();
   }
 
