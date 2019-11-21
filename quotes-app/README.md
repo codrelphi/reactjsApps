@@ -5,9 +5,9 @@ This app is a *quote generator*. It is created by following the reactJS mini-ser
 
 ## Improvements
 
-The author used the function **componentWillMount()** to generate the first quote when the client (i.e. the browser) is reloaded. This function is deprecated and unsafe. So, I replace it with the function **componentDidMount()** to achieve the goal.
++ The author used the function **componentWillMount()** to generate the first quote when the client (i.e. the browser) is reloaded. This function is deprecated and unsafe. So, I replace it with the function **componentDidMount()** to achieve the goal.
 
-
++ Add Bootstrap 4 to have a nice UX
 
 ## Installation
 
