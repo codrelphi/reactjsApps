@@ -1,26 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
+import citations from './citations';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+
+class App extends Component {
+
+  state = {}
+
+  genererCitation(event) {
+
+    //transforme les citations en Array
+    const keyArray = Object.keys(citations);
+    const randomKey = keyArray[Math.floor(Math.floor(Math.random() * keyArray.length))];
+    console.log(randomKey);
+    this.setState(citations[randomKey]);
+
+  }
+
+  render() {
+    return (
+      <div>
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          {this.state.citation}
+          <span>- {this.state.auteur}</span>
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+        <button onClick={e => this.genererCitation(e)}>Une autre citation!</button>
+      </div>
+    );
+  }
 }
 
 export default App;
