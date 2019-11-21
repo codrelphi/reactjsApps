@@ -28,10 +28,19 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <Citation details={this.state} />
-        <button onClick={e => this.genererCitation(e)}>Une autre citation!</button>
+      <div className="container">
+        <div className="card border-primary mb-3" styleName="max-width: 18rem;">
+          <div className="card-header">Citation</div>
+          <div className="card-body text-primary">
+            <p className="card-text"><Citation details={this.state} /></p>
+          </div>
+        </div>
+        <div>
+          <button className="btn btn-primary btn-lg btn-block" onClick={e => this.genererCitation(e)}>Une autre citation!</button>
+        </div>
       </div>
+
+
     );
   }
 }
