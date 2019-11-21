@@ -4,10 +4,10 @@ class Citation extends Component {
 
   render() {
     return (
-      <p>
-        {this.props.details.citation}
-        <span>- {this.props.details.auteur}</span>
-      </p>
+          <p>
+            {this.props.details.citation}
+            <span>- {this.props.details.auteur}</span>
+          </p>
     );
   }
 }
