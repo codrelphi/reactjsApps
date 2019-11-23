@@ -14,9 +14,16 @@ class App extends Component {
   }
 
   handleClick = () => {
-    this.setState({
+    /*this.setState({
       compteur: this.state.compteur + 1
-  });
+    });*/
+    const client = {id: 4, nom: "John Doe"};
+    const clients = this.state.clients.slice(); // copie du tableau initial
+    clients.push(client);
+
+    this.setState({
+      clients: clients
+    });
   }
 
   render() {
