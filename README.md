@@ -1,2 +1,2 @@
 # reactjsApps
-✨ Contains apps developed during my learning of reactJS library. ✌
+✨ Contains apps developed during my journey to master reactJS library. ✌
