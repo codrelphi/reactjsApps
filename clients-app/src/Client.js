@@ -4,9 +4,7 @@ import React, {Component} from 'react';
 class Client extends Component {
 
   render() {
-    const client = this.props.client;
-    const handleDelete = this.props.handleDelete;
-
+    const {client, handleDelete} = this.props;
     return (
         <li key={client.id}>{client.nom}
           <button onClick={() => handleDelete(client.id)}>X</button>
