@@ -10,32 +10,26 @@ class App extends Component {
       {id: 2, nom: "Magali Pernin"},
       {id: 3, nom: "Joseph Durand"}
     ],
-    compteur: 0
+
   }
 
-  handleClick = () => {
-    /*this.setState({
-      compteur: this.state.compteur + 1
-    });*/
-    const client = {id: 4, nom: "John Doe"};
-    const clients = this.state.clients.slice(); // copie du tableau initial
-    clients.push(client);
-
+  handleDelete = (id) => {
+    const clients = this.state.clients.slice()
+    const index = clients.findIndex(client => client.id === id);
+    clients.splice(index, 1);
     this.setState({
       clients: clients
     });
-  }
+  };
 
   render() {
     const title = "Liste de clients";
     return (
       <div>
         <h1>{title}</h1>
-        {this.state.compteur}
-        <button onClick={this.handleClick}>click me</button>
         <ul>
           {this.state.clients.map(client =>
-            <li>{client.nom} <button>X</button></li>
+            <li>{client.nom} <button onClick={() => this.handleDelete(client.id)}>X</button></li>
           )}
         </ul>
         <form>
