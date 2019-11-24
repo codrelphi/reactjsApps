@@ -14,32 +14,33 @@ class App extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    const id = new Date().getTime();
-    const nom = this.state.clientInput;
     const clients = this.state.clients.slice();
-    const client = {id: id, nom: nom};
-    clients.push(client);
-    this.setState({
-      clients: clients,
-      clientInput: ""
-    });
+    clients.push({id: new Date().getTime(), nom: this.state.clientInput});
+    this.setState({clients, clientInput: ""});
   }
 
   handleChange = (event) => {
-    const clientInput = event.currentTarget.value;
-    this.setState({clientInput: clientInput});
+    this.setState({clientInput: event.currentTarget.value});
   }
 
   handleDelete = (id) => {
     const clients = this.state.clients.slice();
-    const index = clients.findIndex(client =>
-      client.id === id);
+    const index = clients.findIndex(client => client.id === id);
     clients.splice(index, 1);
-    this.setState({
-      clients: clients
-    });
+    this.setState({clients});
   }
 
+/*
+  handleEdit = (id) => {
+    const clients = this.state.clients.slice();
+    const index = clients.findIndex(client => client.id === id);
+    const client = clients[index];
+    this.setState({clientInput: client.nom});
+    console.log(this.state.clientInput);
+    console.log(client.nom);
+
+  }
+*/
   render() {
     const title = "Liste de clients";
     return (
@@ -48,7 +49,9 @@ class App extends Component {
         <form onSubmit={this.handleSubmit}>
           <ul>
             { this.state.clients.map(client =>
-                <li key={client.id}>{client.nom} <button onClick={() => this.handleDelete(client.id)}>X</button></li>) }
+                <li key={client.id}>{client.nom}
+                  <button onClick={() => this.handleDelete(client.id)}>X</button>
+                </li>) }
           </ul>
           <input
             type="text"
