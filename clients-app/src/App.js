@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
+import Client from './Client';
+import ClientForm from './ClientForm';
 
 
 class App extends Component {
-
   state = {
     clients: [
       {id: 1, nom: "John Doe"},
@@ -12,19 +13,14 @@ class App extends Component {
     clientInput: ""
   }
 
-  handleSubmit = (event) => {
-    event.preventDefault();
-    const clients = this.state.clients.slice();
-    clients.push({id: new Date().getTime(), nom: this.state.clientInput});
+  handleAddClient = (client) => {
+    const clients = [...this.state.clients]; // spread operator
+    clients.push(client);
     this.setState({clients, clientInput: ""});
   }
 
-  handleChange = (event) => {
-    this.setState({clientInput: event.currentTarget.value});
-  }
-
   handleDelete = (id) => {
-    const clients = this.state.clients.slice();
+    const clients = [...this.state.clients];
     const index = clients.findIndex(client => client.id === id);
     clients.splice(index, 1);
     this.setState({clients});
@@ -38,29 +34,18 @@ class App extends Component {
     this.setState({clientInput: client.nom});
     console.log(this.state.clientInput);
     console.log(client.nom);
-
   }
 */
+
   render() {
     const title = "Liste de clients";
     return (
       <div>
         <h1>{title}</h1>
-        <form onSubmit={this.handleSubmit}>
-          <ul>
-            { this.state.clients.map(client =>
-                <li key={client.id}>{client.nom}
-                  <button onClick={() => this.handleDelete(client.id)}>X</button>
-                </li>) }
-          </ul>
-          <input
-            type="text"
-            placeholder="Ajouter un nouveau client"
-            value={this.state.clientInput}
-            onChange={this.handleChange}
-          />
-          <button>Confirmer</button>
-        </form>
+        <ul>
+          { this.state.clients.map(client => <Client client={client} handleDelete={this.handleDelete}/>) }
+        </ul>
+        <ClientForm handleAddClient={this.handleAddClient} />
       </div>
     );
   }
