@@ -40,12 +40,13 @@ class App extends Component {
   render() {
     const title = "Liste de clients";
     return (
-      <div>
-        <h1>{title}</h1>
-        <ul>
+      <div className="container">
+        <h1 className="red-text text-lighten-1">{title}</h1>
+        <ul className="collection">
           { this.state.clients.map(client => <Client client={client} handleDelete={this.handleDelete}/>) }
         </ul>
         <ClientForm handleAddClient={this.handleAddClient} />
+        <br/><br/><br/>
       </div>
     );
   }
