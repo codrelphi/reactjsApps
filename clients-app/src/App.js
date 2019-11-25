@@ -41,7 +41,7 @@ class App extends Component {
     const title = "Liste de clients";
     return (
       <div className="container">
-        <h1 className="red-text text-lighten-1">{title}</h1>
+        <h1 className="red-text text-lighten-1">{title}<span>({this.state.clients.length})</span></h1>
         <ul className="collection">
           { this.state.clients.map(client => <Client client={client} handleDelete={this.handleDelete}/>) }
         </ul>
