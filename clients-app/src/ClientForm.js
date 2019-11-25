@@ -15,7 +15,7 @@ class ClientForm extends Component {
     event.preventDefault();
 
     const id = new Date().getTime();
-    const nom = this.state.clientInput;
+    const nom = this.capitalize(this.state.clientInput);
 
     if (nom.length > 0) {
       this.props.handleAddClient({id, nom});
@@ -23,6 +23,9 @@ class ClientForm extends Component {
     }
 
   }
+
+  capitalize = (word) => word.charAt(0).toUpperCase() + word.slice(1)
+
 
   render() {
     return (
