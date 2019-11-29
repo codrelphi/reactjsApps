@@ -1,68 +1,58 @@
-import React, {Component} from 'react';
+import React, {useState} from 'react';
 
 
-class App extends Component {
-  state = {
-    tasks: [
-      {id: 1, name: "Task 1"},
-      {id: 2, name: "Task 2"},
-    ],
-    userInput: ""
-  }
+const App = () => {
 
-  handleChange = (e) => {
-    this.setState({
-      userInput: e.currentTarget.value
-    });
-  }
+  const [tasks, setTasks] = useState([
+    {id: 1, name: "Task 1"},
+    {id: 2, name: "Task 2"},
+  ]);
+  const [userInput, setUserInput] = useState("");
 
-  handleSubmit = (e) => {
+  const handleChange = (e) => setUserInput(e.currentTarget.value);
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-    if (this.state.userInput.trim().length > 0) {
-      const tasks = [...this.state.tasks];
+    if (userInput.trim().length > 0) {
+      const updatedTasks = [...tasks];
       const id = new Date().getTime();
-      const name = this.state.userInput;
+      const name = userInput;
       const task = {id: id, name: name}
-      tasks.push(task);
-      this.setState({tasks: tasks});
-      this.setState({userInput: ""});
+      updatedTasks.push(task);
+      setTasks(updatedTasks);
+      setUserInput("");
     }
   }
 
-  handleDelete = (id) => {
-    const tasks = [...this.state.tasks];
-    const index = tasks.findIndex(task => task.id === id);
-    tasks.splice(index, 1);
-    this.setState({
-      tasks: tasks
-    });
-
+  const handleDelete = (id) => {
+    const updatedTasks = [...tasks];
+    const index = updatedTasks.findIndex(task => task.id === id);
+    updatedTasks.splice(index, 1);
+    setTasks(updatedTasks);
   }
 
 
-  render(){
-    return (<div>
-        <form onSubmit={this.handleSubmit}>
+  return (<div>
+        <form onSubmit={handleSubmit}>
           <input
             type="text"
             placeholder="add a task"
-            value={this.state.userInput}
-            onChange={this.handleChange}
+            value={userInput}
+            onChange={handleChange}
             />
           <button>Add</button>
         </form>
         <ul>
           {
-            this.state.tasks.map(task => (
+            tasks.map(task => (
               <li key={task.id}>
                 {task.name}
-                <button onClick={() => this.handleDelete(task.id)}>X</button>
+                <button onClick={() => handleDelete(task.id)}>X</button>
               </li>
             ))
           }
         </ul>
-      </div>);
-  }
+    </div>);
 }
 
 export default App;
