@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Client from './Client';
 import ClientForm from './ClientForm';
+import Counter from './Counter';
 
 
 class App extends Component {
@@ -42,6 +43,7 @@ class App extends Component {
     return (
       <div className="container">
         <h1 className="red-text text-lighten-1">{title}<span>({this.state.clients.length})</span></h1>
+        <Counter />
         <ul className="collection">
           { this.state.clients.map(client => <Client client={client} handleDelete={this.handleDelete}/>) }
         </ul>
