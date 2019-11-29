@@ -1,41 +1,36 @@
-import React, {Component} from 'react';
+import React, {useState} from 'react';
 
 
-class ClientForm extends Component {
+const ClientForm = (props) => {
 
-  state = {
-    clientInput: ""
+  const [clientInput, setClientInput] = useState("")
+  const handleChange = (event) => {
+    setClientInput(event.currentTarget.value);
   }
 
-  handleChange = (event) => {
-    this.setState({clientInput: event.currentTarget.value});
-  }
-
-  handleSubmit = (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
 
     const id = new Date().getTime();
-    const nom = this.capitalize(this.state.clientInput);
+    const nom = capitalize(clientInput);
 
     if (nom.length > 0) {
-      this.props.handleAddClient({id, nom});
-      this.setState({clientInput: ""});
+      props.handleAddClient({id, nom});
+      setClientInput("");
     }
 
   }
 
-  capitalize = (word) => word.charAt(0).toUpperCase() + word.slice(1)
+  const capitalize = (word) => word.charAt(0).toUpperCase() + word.slice(1)
 
-
-  render() {
-    return (
-      <form onSubmit={this.handleSubmit}>
+  return (
+      <form onSubmit={handleSubmit}>
         <input
           type="text"
           placeholder="Ajouter un nouveau client"
           maxlength="52"
-          value={this.state.clientInput}
-          onChange={this.handleChange}
+          value={clientInput}
+          onChange={handleChange}
         />
         <button className="btn waves-effect waves-light red lighten-1">
           Confirmer
@@ -43,8 +38,6 @@ class ClientForm extends Component {
         </button>
       </form>
     );
-  }
-
 }
 
 export default ClientForm;

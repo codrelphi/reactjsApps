@@ -1,30 +1,27 @@
-import React, {Component} from 'react';
+import React, {useState} from 'react';
 import Client from './Client';
 import ClientForm from './ClientForm';
-import Counter from './Counter';
 
 
-class App extends Component {
-  state = {
-    clients: [
-      {id: 1, nom: "John Doe"},
-      {id: 2, nom: "Jane Germain"},
-      {id: 3, nom: "Raoul Sambo"},
-    ],
-    clientInput: ""
+const App = () => {
+  const [clients, setClients] = useState([
+    {id: 1, nom: "John Doe"},
+    {id: 2, nom: "Jane Germain"},
+    {id: 3, nom: "Raoul Sambo"},
+  ]);
+
+
+  const handleAddClient = (client) => {
+    const updatedClients = [...clients]; // spread operator
+    updatedClients.push(client);
+    setClients(updatedClients);
   }
 
-  handleAddClient = (client) => {
-    const clients = [...this.state.clients]; // spread operator
-    clients.push(client);
-    this.setState({clients, clientInput: ""});
-  }
-
-  handleDelete = (id) => {
-    const clients = [...this.state.clients];
-    const index = clients.findIndex(client => client.id === id);
-    clients.splice(index, 1);
-    this.setState({clients});
+  const handleDelete = (id) => {
+    const updatedClients = [...clients];
+    const index = updatedClients.findIndex(client => client.id === id);
+    updatedClients.splice(index, 1);
+    setClients(updatedClients);
   }
 
 /*
@@ -38,20 +35,17 @@ class App extends Component {
   }
 */
 
-  render() {
-    const title = "Liste de clients";
-    return (
+  const title = "Liste de clients";
+  return (
       <div className="container">
-        <h1 className="red-text text-lighten-1">{title}<span>({this.state.clients.length})</span></h1>
-        <Counter />
+        <h1 className="red-text text-lighten-1">{title}<span>({clients.length})</span></h1>
         <ul className="collection">
-          { this.state.clients.map(client => <Client client={client} handleDelete={this.handleDelete}/>) }
+          { clients.map(client => <Client client={client} handleDelete={handleDelete}/>) }
         </ul>
-        <ClientForm handleAddClient={this.handleAddClient} />
+        <ClientForm handleAddClient={handleAddClient} />
         <br/><br/><br/>
       </div>
     );
-  }
 }
 
 export default App;
