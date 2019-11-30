@@ -31,6 +31,7 @@ const App = () => {
     setTasks(updatedTasks);
   }
 
+  const capitalize = word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
 
   return (
     <div className="container">
@@ -58,7 +59,7 @@ const App = () => {
             tasks.map(task => (
               <div key={task.id} className="list-group-item">
                 <div className="row">
-                  <div className="col-sm-10">{task.name}</div>
+                  <div className="col-sm-10">{capitalize(task.name)}</div>
                   <div className="col-sm-2"><button onClick={() => handleDelete(task.id)} className="btn btn-outline-danger">X</button></div>
                 </div>
               </div>))
