@@ -31,6 +31,19 @@ const App = () => {
     setTasks(updatedTasks);
   }
 
+/*
+  const handleEdit = (task) => {
+    const updatedTasks = [...tasks];
+    const index = tasks.findIndex(t => t.id === task.id);
+    setUserInput(task.name);
+    const id = task.id;
+    const name = userInput;
+    const new_task = {id: id, name: name};
+    updatedTasks[index] = new_task;
+    setTasks(updatedTasks);
+  }
+*/
+
   const capitalize = word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
 
   return (
